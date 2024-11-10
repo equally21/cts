@@ -15,8 +15,8 @@ workflows:
       #       - MML harbor
       #       - dockerhub
       - deploy:
-          requires:
-            - build-and-push
+          # requires:
+          #   - build-and-push
           context: 
             - cts-infrastructure
           filters:
