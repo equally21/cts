@@ -7,7 +7,7 @@ workflows:
   version: 2
   test:
     jobs:
-      - test-node:
+      - test-node
           
   build:
     jobs:
@@ -20,10 +20,10 @@ workflows:
       - deploy:
           context: 
             - cts-infrastructure
-        filters:
-          branches:
-            only:
-              - master
+          filters:
+            branches:
+              only:
+                - master
 
 jobs:
   test-node:
