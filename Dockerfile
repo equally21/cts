@@ -7,7 +7,7 @@ RUN npm ci
 
 FROM base AS builder
 WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
+COPY --from=base /app/node_modules ./node_modules
 
 FROM alpine:3.18
 
@@ -15,7 +15,7 @@ RUN apk add --no-cache nodejs
 
 WORKDIR /app
 
-COPY --from=deps /app/node_modules ./node_modules
+COPY --from=base /app/node_modules ./node_modules
 
 COPY . .
 CMD ["node", "app.js"]
