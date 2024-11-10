@@ -7,7 +7,7 @@ app.get('/ping', (req, res) => {
   res.send('pong');
 });
 
-app.get('/version', (req, res) => {
+app.get('/dev', (req, res) => {
   res.send('1.0.0');
 });
 
