@@ -1,11 +1,21 @@
-FROM node
+FROM node:18-alpine AS base
+RUN apk add --no-cache libc6-compat
+WORKDIR /app
 
-# RUN apk add --no-cache nodejs npm
+COPY package.json package-lock.json*
+RUN npm ci
+
+FROM base AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+
+FROM alpine:3.18
+
+RUN apk add --no-cache nodejs
 
 WORKDIR /app
 
-COPY package*.json ./
-RUN npm ci
+COPY --from=deps /app/node_modules ./node_modules
 
 COPY . .
 CMD ["node", "app.js"]
