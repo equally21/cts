@@ -76,11 +76,12 @@ jobs:
           name: Update infra repo
           command: |
             mkdir -p ~/.ssh
+            chmod 700 ~/.ssh
             ssh-keyscan github.com >> ~/.ssh/known_hosts
-            echo "$CTS_INFRASTRUCTURE_SSH_KEY" | base64 -d
             echo "$CTS_INFRASTRUCTURE_SSH_KEY" | base64 -d > ~/.ssh/id_rsa
             chmod 600 ~/.ssh/id_rsa
             cat ~/.ssh/id_rsa
+            ls -lah ~/.ssh
             git clone git@github.com:Andrew920/cts-infrastructure.git
             cd cts-infrastructure
             git config --global user.email "andraz.marinsek@gmail.com"
