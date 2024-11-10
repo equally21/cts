@@ -1,15 +1,18 @@
-const express = require('express')
-const app = express()
-const port = 3000
+import express from 'express';
+
+const app = express();
+const port = 3000;
 
 app.get('/ping', (req, res) => {
-  res.send('pong')
-})
+  res.send('pong');
+});
 
 app.get('/version', (req, res) => {
-  res.send('1.0.0')
-})
+  res.send('1.0.0');
+});
 
-app.listen(port, () => {
-  console.log(`CTS is listening on: ${port}`)
-})
+const server = app.listen(port, () => {
+  console.log(`CTS is listening on: ${port}`);
+});
+
+export { app as default, server };
