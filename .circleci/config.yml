@@ -58,4 +58,4 @@ jobs:
                 --dockerfile="/app/Containerfile" \
                 --destination="harbor.mymemorylog.com/cts/cts:$TAG" \
                 --ignore-path="/app"
-  deploy:
+  # deploy:
