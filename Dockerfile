@@ -1,6 +1,6 @@
-FROM alpine:3.18
+FROM node
 
-RUN apk add --no-cache nodejs npm
+# RUN apk add --no-cache nodejs npm
 
 WORKDIR /app
 
