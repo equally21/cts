@@ -8,11 +8,11 @@ workflows:
           context: 
             - MML harbor
             - dockerhub
-      - deploy:
-          filters:
-            branches:
-              only:
-                - main
+      # - deploy:
+      #     filters:
+      #       branches:
+      #         only:
+      #           - main
 
 jobs:
   test-node:
