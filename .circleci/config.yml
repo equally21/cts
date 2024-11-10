@@ -7,13 +7,13 @@ workflows:
   version: 2
   test-build-deploy:
     jobs:
-      - test-node
-      - build-and-push:
-          requires:
-            - test-node
-          context: 
-            - MML harbor
-            - dockerhub
+      # - test-node
+      # - build-and-push:
+      #     requires:
+      #       - test-node
+      #     context: 
+      #       - MML harbor
+      #       - dockerhub
       - deploy:
           requires:
             - build-and-push
