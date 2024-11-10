@@ -3,7 +3,7 @@ import express from 'express';
 const app = express();
 const port = 3000;
 
-app.get('/ping', (req, res) => {
+app.test.get('/ping', (req, res) => {
   res.send('pong');
 });
 
