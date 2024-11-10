@@ -2,9 +2,12 @@ version: 2.1
 
 workflows:
   version: 2
+  test:
+    jobs:
+      - test-node
   build:
     jobs:
-      - build:
+      - build-and-push:
           context: 
             - MML harbor
             - dockerhub
@@ -25,7 +28,7 @@ jobs:
           name: Run tests
           command: node --experimental-vm-modules node_modules/jest/bin/jest.js
 
-  build:
+  build-and-push:
     working_directory: /app
     resource_class: andrewshomelab/runner-1
     docker:
