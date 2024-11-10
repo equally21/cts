@@ -12,12 +12,16 @@ workflows:
   build:
     jobs:
       - build-and-push:
+          requires:
+            - test-node
           context: 
             - MML harbor
             - dockerhub
   deploy:
     jobs:
       - deploy:
+          requires:
+            - build-and-push
           context: 
             - cts-infrastructure
           filters:
@@ -79,6 +83,7 @@ jobs:
             mkdir -p ~/.ssh
             ssh-keyscan github.com >> ~/.ssh/known_hosts
             echo $CTS_INFRASTRUCTURE_SSH_KEY > ~/.ssh/id_rsa
+            chmod 600 ~/.ssh/id_rsa
             git clone git@github.com:Andrew920/cts-infrastructure.git
             cd cts-infrastructure
             git config --global user.email "andraz.marinsek@gmail.com"
