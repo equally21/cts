@@ -5,20 +5,15 @@ orbs:
 
 workflows:
   version: 2
-  test:
+  test-build-deploy:
     jobs:
-      - test-node:
-          
-  build:
-    jobs:
+      - test-node
       - build-and-push:
           requires:
             - test-node
           context: 
             - MML harbor
             - dockerhub
-  deploy:
-    jobs:
       - deploy:
           requires:
             - build-and-push
