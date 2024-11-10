@@ -64,7 +64,7 @@ jobs:
 
             /kaniko/executor \
                 --context="/app" \
-                --dockerfile="/app/Containerfile" \
+                --dockerfile="/app/Dockerfile" \
                 --destination="harbor.mymemorylog.com/cts/cts:$TAG" \
                 --ignore-path="/app"
   deploy:
