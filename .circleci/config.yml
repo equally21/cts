@@ -7,18 +7,23 @@ workflows:
   version: 2
   test:
     jobs:
-      - test-node
+      - test-node:
+          
   build:
     jobs:
       - build-and-push:
           context: 
             - MML harbor
             - dockerhub
-      # - deploy:
-      #     filters:
-      #       branches:
-      #         only:
-      #           - main
+  deploy:
+    jobs:
+      - deploy:
+          context: 
+            - cts-infrastructure
+        filters:
+          branches:
+            only:
+              - master
 
 jobs:
   test-node:
@@ -64,4 +69,20 @@ jobs:
                 --dockerfile="/app/Containerfile" \
                 --destination="harbor.mymemorylog.com/cts/cts:$TAG" \
                 --ignore-path="/app"
-  # deploy:
+  deploy:
+    docker:
+        - image: cimg/base:2023.06
+    steps:
+      - run:
+        name: Update infra repo
+        command: |
+          mkdir -p ~/.ssh
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          echo $CTS_INFRASTRUCTURE_SSH_KEY > ~/.ssh/id_rsa
+          git clone git@github.com:Andrew920/cts-infrastructure.git
+          cd cts-infrastructure
+          git config --global user.email "andraz.marinsek@gmail.com"
+          git config --global user.name "CircleCI"
+          sed -i "s|image: .*|image: harbor.mymemorylog.com/cts/cts:$TAG|g" gitops/global/deployment.yaml
+          git commit -m "CircleCI update image tag to $TAG"
+          git push -u origin master
