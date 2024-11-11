@@ -73,6 +73,7 @@ jobs:
     docker:
         - image: cimg/base:2023.06
     steps:
+      - checkout
       - run:
           name: Update infra repo
           command: |
