@@ -4,7 +4,7 @@ Gre za kontejneriziran strežnik, ki teče na kubernetesu in omogoča odjemalcem
 
 ## Infrastruktura
 
-Infrastruktura je difinirana v ločenem git repozitoriju: `https://github.com/Andrew920/cts-infrastructure`  
+Infrastruktura je definirana v ločenem git repozitoriju: `https://github.com/Andrew920/cts-infrastructure`  
 Repozitorij za infrastrukturo je ločen saj se pri zvezni integraciji posodobijo kubernetes viri, kar bi povzročilo neskončno zanko. Boljše je tudi iz vidika preglednosti. Ločena repozitorija omogočata tudi ločen dostop do definicije infrastrukture. Tako se dodeli dostop do infrastrukure le tistim, ki ga potrebujejo. Uporabi se praksa GitOps kar posledično pomeni, da so spremembe virov v git repozitoriju replicirane na vse strežnike.
 
 ## Strežnik
