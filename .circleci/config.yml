@@ -37,7 +37,7 @@ jobs:
 
   build-and-push:
     working_directory: /app
-    resource_class: andrewshomelab/runner-1
+    resource_class: cts-runner/runner-1
     docker:
       - image: gcr.io/kaniko-project/executor:debug
         entrypoint: ""
