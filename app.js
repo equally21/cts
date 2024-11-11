@@ -1,5 +1,5 @@
 import express from 'express';
-import pkg from './package.json' assert { type: "json" };
+// import pkg from './package.json' assert { type: "json" };
 
 const app = express();
 const port = 3000;
