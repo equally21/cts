@@ -67,7 +67,7 @@ jobs:
                 --context="/app" \
                 --dockerfile="/app/Dockerfile" \
                 --destination="harbor.mymemorylog.com/cts/cts:$TAG" \
-                --build-arg "VERSION=$TAG"
+                --build-arg "VERSION=$TAG" \
                 --ignore-path="/app"
   deploy:
     docker:
