@@ -11,6 +11,9 @@ COPY --from=base /app/node_modules ./node_modules
 
 FROM alpine:3.18
 
+ARG VERSION
+ENV VERSION=${VERSION}
+
 RUN apk add --no-cache nodejs
 
 WORKDIR /app

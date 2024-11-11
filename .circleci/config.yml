@@ -60,12 +60,14 @@ jobs:
       - run:
           name: Build and Push image
           command: |
-            TAG=0.1.<< pipeline.id >>
-
+            VERSION=$(jq -r .version package.json)
+            TAG=$VERSION-<< pipeline.id >>
+            
             /kaniko/executor \
                 --context="/app" \
                 --dockerfile="/app/Dockerfile" \
                 --destination="harbor.mymemorylog.com/cts/cts:$TAG" \
+                --build-arg "VERSION=$TAG"
                 --ignore-path="/app"
   deploy:
     docker:
@@ -74,7 +76,8 @@ jobs:
       - run:
           name: Update infra repo
           command: |
-            TAG=0.1.<< pipeline.id >>
+            VERSION=$(jq -r .version package.json)
+            TAG=$VERSION-<< pipeline.id >>
             mkdir -p ~/.ssh
             chmod 700 ~/.ssh
             ssh-keyscan gitlab.com >> ~/.ssh/known_hosts
