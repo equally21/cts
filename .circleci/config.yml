@@ -91,4 +91,4 @@ jobs:
             sed -i "s|image: .*|image: harbor.mymemorylog.com/cts/cts:$TAG|g" gitops/global/deployment.yaml
             git add gitops/global/deployment.yaml
             git commit -m "CircleCI update image tag to $TAG"
-            git push -u origin master
+            git push -u origin main
